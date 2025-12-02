@@ -1,0 +1,31 @@
+<ul class="nav nav-tabs bg-warning">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">BlogiFy</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/user/signin">SignIn</a></li>
+      <li><a class="dropdown-item" href="/user/signup">SignUp</a></li>
+       <% if (locals.user) { %>
+             <li><a class="dropdown-item" href="/user/logout">Log Out</a></li>
+       <% } %>
+    </ul>
+  </li>
+
+ <% if (locals.user) { %>
+   <li class="nav-item">
+    <a class="nav-link" aria-disabled="true" href="/blog/add-new">Add Blogs</a>
+  </li>
+ <% } %>
+</ul>
+<% if (locals.error) { %>
+ <div class="container mt-5">
+  <div class="alert alert-danger" role="alert">
+  <%= locals.error %>
+</div>
+ </div>
+<% } %>
