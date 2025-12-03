@@ -3,8 +3,13 @@ const User = require("../models/user")
 const router =express.Router();
 const multer = require("multer");
 const path = require("path");
+const multer = require("multer");
+const { storage } = require("../cloudinary");
+
+const upload = multer({ storage: storage });
 
 
+/*
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.resolve("./publice/images"));
@@ -14,7 +19,9 @@ const storage = multer.diskStorage({
         cb(null,fileName);
   }
 });
-const upload = multer({ storage: storage });
+
+*/
+
 
 router.get("/signin",(req,res)=>{
     return res.render('signin');
@@ -30,7 +37,7 @@ router.post("/signup" ,upload.single("profileImage"),async(req,res)=>{
         fullName,
         email,
         password,
-        profileImage : `/images/${req.file.filename}`
+        profileImage:req.file.path,
     });
  
 const token =await User.matchPasswordAndGenerateToken(email,password);

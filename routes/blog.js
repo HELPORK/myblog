@@ -6,6 +6,7 @@ const router =express.Router();
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
 //image uploader 
+/*
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.resolve("./publice/uploads"));
@@ -15,7 +16,8 @@ const storage = multer.diskStorage({
         cb(null,fileName);
   }
 })
-
+*/
+const { storage } = require("../cloudinary");
 const upload = multer({ storage: storage });
 
 
@@ -44,7 +46,7 @@ router.post("/",upload.single("coverImage"),async(req,res)=>{
     body,
     title,
     createdBy: req.user._id,
-    coverImageURL: `/uploads/${req.file.filename}`
+    coverImageURL:req.file.path,
    });
     return res.redirect(`/blog/${blog._id}`);
 });
