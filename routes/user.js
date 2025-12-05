@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
 
 */
 
-
 router.get("/signin",(req,res)=>{
     return res.render('signin');
 });

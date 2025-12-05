@@ -29,6 +29,7 @@ router.get("/add-new",(req,res)=>{
 
 });
 
+
 router.get("/:_id",async(req,res)=>{
 const blog = await Blog.findById(req.params._id).populate("createdBy");
 const comments = await Comment.find({blogId: req.params._id}).populate("createdBy");

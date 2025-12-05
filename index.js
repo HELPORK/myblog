@@ -26,6 +26,12 @@ app.use(cookieParser());
 app.use(checkForAuthenticationCookies("token"));
 app.use(express.static(path.resolve("./publice")));
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
+
 app.get("/",async(req,res)=>{
    const allBlogs = (await Blog.find({}));
    return  res.render('home',{
@@ -33,6 +39,7 @@ app.get("/",async(req,res)=>{
         blogs : allBlogs ,
        });
 });
+
 app.use("/user",userRoute);
 app.use("/blog",blogRoute);
 

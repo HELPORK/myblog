@@ -4,6 +4,7 @@ const secert = "dhania99$";
 
 function createTokenForUser(user){
     const payload = {
+        fullName:user.fullName,
         _id : user._id,
         email :user.email,
         profileImage:user.profileImage,

@@ -5,8 +5,24 @@
     <li class="nav-item">
     <a class="nav-link" href="/">Home</a>
   </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+
+ <% if (locals.user) { %>
+   <li class="nav-item">
+    <a class="nav-link" aria-disabled="true" href="/blog/add-new">Add Blogs</a>
+  </li>
+ <% } %>
+
+ <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><% if (locals.user) { %>
+     <img src="<%= user.profileImage %>" 
+       width="35"
+       height="35"
+       style="border-radius:50%; object-fit:cover;">
+  <%= user.fullName %>
+    <% } else { %>
+     Account 
+    <% } %>
+  </a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="/user/signin">SignIn</a></li>
       <li><a class="dropdown-item" href="/user/signup">SignUp</a></li>
@@ -15,13 +31,8 @@
        <% } %>
     </ul>
   </li>
-
- <% if (locals.user) { %>
-   <li class="nav-item">
-    <a class="nav-link" aria-disabled="true" href="/blog/add-new">Add Blogs</a>
-  </li>
- <% } %>
 </ul>
+
 <% if (locals.error) { %>
  <div class="container mt-5">
   <div class="alert alert-danger" role="alert">
