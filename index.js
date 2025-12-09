@@ -13,7 +13,7 @@ const Blog = require("./models/blog");
 const port = process.env.PORT || 8002;
 ///Do edit here before pushing
 
-mongoose.connect(process.env.MONGO_UR)
+mongoose.connect(process.env.MONGO_URL)
 .then(()=>console.log("mongodb is connected now ||"));
 
 
