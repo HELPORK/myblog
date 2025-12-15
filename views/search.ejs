@@ -1,0 +1,24 @@
+<%- include('./partials/head') %>
+
+<div class="container mt-4">
+  <h2>Search results for "<%= query %>"</h2>
+
+  <h3 class="mt-4">Blogs by Title</h3>
+  <% blogs.forEach(blog => { %>
+    <div class="mt-3">
+      <a href="/blog/<%= blog._id %>"><%= blog.title %></a>
+      <p>By: <%= blog.createdBy.fullName %></p>
+    </div>
+  <% }) %>
+
+  <h3 class="mt-4">Blogs by User Name</h3>
+  <% userBlogs.forEach(blog => { %>
+    <div class="mt-3">
+      <a href="/blog/<%= blog._id %>"><%= blog.title %></a>
+      <p>By: <%= blog.createdBy.fullName %></p>
+    </div>
+  <% }) %>
+
+</div>
+
+<%- include('./partials/script') %>

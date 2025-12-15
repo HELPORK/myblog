@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGO_URL)
 
 app.set("view engine" , "ejs");
 app.set("viw" , path.resolve("./views"));
+app.set("views", path.join(__dirname, "views"));
 //form data middleware
 
 app.use(express.urlencoded({extended:false}));

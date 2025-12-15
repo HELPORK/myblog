@@ -1,6 +1,8 @@
+
+
 <ul class="nav nav-tabs bg-warning">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Das Magazine</a>
+    <a class="nav-link bg-light" aria-current="page" href="#">Das Magazine</a>
   </li>
     <li class="nav-item">
     <a class="nav-link" href="/">Home</a>
@@ -8,11 +10,11 @@
 
  <% if (locals.user) { %>
    <li class="nav-item">
-    <a class="nav-link" aria-disabled="true" href="/blog/add-new">Add Blogs</a>
+    <a class="nav-link " aria-disabled="true" href="/blog/add-new">Add Blogs</a>
   </li>
  <% } %>
 
- <li class="nav-item dropdown">
+ <li class="nav-item dropdown ms-5">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><% if (locals.user) { %>
      <img src="<%= user.profileImage %>" 
        width="35"
@@ -31,6 +33,11 @@
        <% } %>
     </ul>
   </li>
+  <form action="/blog/search" method="get">
+   <input class="search" type="search" placeholder="Search blogs or users" name="q">
+   <button type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+  
+  </form>
 </ul>
 
 <% if (locals.error) { %>
