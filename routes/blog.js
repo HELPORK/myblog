@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../models/blog")
+const User = require("../models/user")
 const multer = require("multer");
 const path = require("path");
 const router =express.Router();
@@ -68,8 +68,18 @@ router.get("/search", async (req, res) => {
     });
   }
 });
+/*
 
+router.get("/search",async(req,res)=>{
+const query = req.query.q;
+console.log("Search is " , query);
 
+const result = await Blog.find({
+  name:{$regex:query,$options:"i"}
+});
+res.send(result);
+});
+*/
 
 router.get("/:_id",async(req,res)=>{
 const blog = await Blog.findById(req.params._id).populate("createdBy");

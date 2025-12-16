@@ -1,4 +1,18 @@
  <style>
+   
+.das{
+  height:53px;
+ transition:all 0.3s ease-in-out, transform 0.3s ease-in-out
+}
+.das:hover{
+box-shadow: 10px 10px 10px black;  
+  transform: scale(1.1);
+}
+   .nav{
+  height:53px;
+   transition:all 0.3s ease-in-out, transform 0.3s ease-in-out
+}
+
    .profileImage{
      width: 40px;
     height: 40px;
@@ -8,14 +22,16 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
   
 }
-.card{
+.card-img-top{
   transition:all 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.card:hover{
-   width: 370px;
+.card:hover .card-img-top {
+   width: 290px;
   padding: 10px;
   border-radius: 8px;
-  box-shadow: 10px 5px 15px  rgb(255, 103, 103);
+  box-shadow: 10px 5px 10px  rgb(255, 119, 41),
+             10px 5px 20px  rgb(255, 255, 255),
+               10px 5px 30px  green;
    transform: scale(1.1);
 }
 .profileImageUser{
