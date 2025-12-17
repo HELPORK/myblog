@@ -6,6 +6,7 @@ const router =express.Router();
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
 //image uploader 
+//to store image locally
 /*
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -17,6 +18,8 @@ const storage = multer.diskStorage({
   }
 })
 */
+
+//to store image in server 
 const { storage } = require("../cloudinary");
 const upload = multer({ storage: storage });
 
@@ -30,13 +33,18 @@ router.get("/add-new",(req,res)=>{
 });
 router.get("/search", async (req, res) => {
   const query = req.query.q;
-  
-  console.log("SEARCH QUERY =",query);
+
   try {
     // Search blogs by title
     const blogs = await Blog.find({
       title: { $regex: query, $options: "i" }
     }).populate("createdBy");
+
+//search by any body 
+const body = await Blog.find({
+      body:{ $regex: query, $options: "i" }
+    }).populate("createdBy");
+
 
     // Search users by name
     const users = await User.find({
@@ -53,9 +61,10 @@ router.get("/search", async (req, res) => {
     }
 
     res.render("search", {
-      query,
+      users,
       blogs,
-      userBlogs
+      userBlogs,
+      body,
     });
 
   } catch (err) {
@@ -64,22 +73,11 @@ router.get("/search", async (req, res) => {
     res.render("search", {
       query,
       blogs: [],
-      userBlogs: []
+      userBlogs: [],
+      body :[],
     });
   }
 });
-/*
-
-router.get("/search",async(req,res)=>{
-const query = req.query.q;
-console.log("Search is " , query);
-
-const result = await Blog.find({
-  name:{$regex:query,$options:"i"}
-});
-res.send(result);
-});
-*/
 
 router.get("/:_id",async(req,res)=>{
 const blog = await Blog.findById(req.params._id).populate("createdBy");

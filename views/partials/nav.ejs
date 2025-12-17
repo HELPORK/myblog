@@ -4,17 +4,17 @@
   <li class="nav-item">
     <a class="nav-link bg-light das" aria-current="page" href="#">Das Magazine</a>
   </li>
-    <li class="nav-item">
+    <li class="nav-item i">
     <a class="nav-link" href="/">Home</a>
   </li>
 
  <% if (locals.user) { %>
-   <li class="nav-item">
+   <li class="nav-item i">
     <a class="nav-link " aria-disabled="true" href="/blog/add-new">Add Blogs</a>
   </li>
  <% } %>
 
- <li class="nav-item dropdown ms-5">
+ <li class="nav-item dropdown ms-5 i">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><% if (locals.user) { %>
      <img src="<%= user.profileImage %>" 
        width="35"
@@ -26,17 +26,16 @@
     <% } %>
   </a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/user/signin">SignIn</a></li>
-      <li><a class="dropdown-item" href="/user/signup">SignUp</a></li>
+      <li><a class="dropdown-item i" href="/user/signin">SignIn</a></li>
+      <li><a class="dropdown-item i" href="/user/signup">SignUp</a></li>
        <% if (locals.user) { %>
-             <li><a class="dropdown-item" href="/user/logout">Log Out</a></li>
+             <li><a class="dropdown-item i" href="/user/logout">Log Out</a></li>
        <% } %>
     </ul>
   </li>
   <form action="/blog/search" method="get">
-   <input class="search" type="search" placeholder="Search blogs or users" name="q">
-   <button type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-  
+   <input class="search i " type="search" placeholder="Search blogs or users" name="q">
+   <button type="submit" class="button i"><i class="fa-solid fa-magnifying-glass"></i></button>
   </form>
 </ul>
 
