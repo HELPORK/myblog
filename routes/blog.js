@@ -45,7 +45,6 @@ const body = await Blog.find({
       body:{ $regex: query, $options: "i" }
     }).populate("createdBy");
 
-
     // Search users by name
     const users = await User.find({
       fullName: { $regex: query, $options: "i" }
